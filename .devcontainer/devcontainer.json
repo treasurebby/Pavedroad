@@ -1,0 +1,21 @@
+{
+  "name": "PavedRoad",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:4": {},
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+      "version": "latest",
+      "helm": "v3.19.0",
+      "minikube": "none"
+    }
+  },
+  "hostRequirements": { "cpus": 4, "memory": "16gb", "storage": "32gb" },
+  "postCreateCommand": "bash scripts/setup-tools.sh",
+  "forwardPorts": [3000, 8080, 9090, 9093],
+  "portsAttributes": {
+    "3000": { "label": "Grafana", "visibility": "private" },
+    "8080": { "label": "ArgoCD", "visibility": "private" },
+    "9090": { "label": "Prometheus", "visibility": "private" },
+    "9093": { "label": "Alertmanager", "visibility": "private" }
+  }
+}
